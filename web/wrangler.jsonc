@@ -1,0 +1,22 @@
+// Cloudflare Worker: serves the built app from ./dist (static assets) and runs the hourly
+// results check (worker/index.js, see the comment there; needs the GH_DISPATCH_TOKEN secret).
+// The custom domain is passed at deploy time from the VALOPOINT_DOMAIN repository
+// variable (see .github/workflows/deploy-cloudflare.yml), so this file has no routes.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "valopoint",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-03",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "triggers": {
+    "crons": ["17 * * * *"]
+  },
+  // logs of the cron (console.log) only; no per-request logs of visitors
+  "observability": {
+    "enabled": true,
+    "logs": { "invocation_logs": false }
+  }
+}

@@ -1,0 +1,94 @@
+/* valopoint tokens — draft v1 (2026-10-06)
+   Fonts (OFL, self-host): Barlow Condensed 600/700/800 (Latin display + numbers), Pretendard Variable (Korean + body).
+   Mapping from current app.css: --border → --line. --g-up / --g-low kept. */
+:root {
+  /* color — surfaces */
+  --bg: #0B0F17;
+  --bg-2: #0F141E;
+  --surface: #141A26;
+  --surface-2: #1B2232;
+  --line: #263042;
+  --line-strong: #3A465C;
+  /* color — ink */
+  --text: #EEE8DE;
+  --text-dim: #B9B3A9;
+  --muted: #8A8F9A;
+  /* color — accent (one thing per screen) */
+  --accent: #F2434F;
+  --accent-ink: #14080A;          /* text on accent fills */
+  --accent-glow: rgba(242, 67, 79, 0.35);
+  --accent-wash: rgba(242, 67, 79, 0.10);
+  /* color — semantic (always paired with a symbol: ▲ ▼ ✓ ○ ×) */
+  --good: #6EE7A0;
+  --bad: #FF8A5C;
+  --warn: #F5C451;
+  /* versus sides */
+  --side-a: var(--accent);
+  --side-b: var(--text);
+  /* regions */
+  --r-amer: #5B9DFF;
+  --r-emea: #B48CFF;
+  --r-pac: #3CC8D8;
+  --r-cn: #F5B94A;
+  /* bracket groups */
+  --g-a: #5B9DFF; --g-b: #B48CFF; --g-c: #45D49A; --g-d: #F5B94A;
+  --g-e: #FF7EB6; --g-f: #3CC8D8; --g-g: #C6D86A; --g-h: #FF9C66;
+  --g-up: #EEE8DE; --g-low: #8A8F9A; --g-final: var(--accent);
+  /* patterns */
+  --scanline: repeating-linear-gradient(0deg, rgba(238, 232, 222, 0.018) 0 1px, transparent 1px 3px);
+  --hatch-assume: repeating-linear-gradient(135deg, rgba(242, 67, 79, 0.14) 0 6px, transparent 6px 12px);
+
+  /* type */
+  --font-display: 'Barlow Condensed', 'Pretendard Variable', sans-serif;
+  --font-body: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+  --font-num: 'Barlow Condensed', ui-monospace, sans-serif; /* use with font-variant-numeric: tabular-nums */
+  --fs-xs: 11px;
+  --fs-sm: 13px;
+  --fs-md: 15px;
+  --fs-lg: 19px;
+  --fs-xl: 24px;
+  --fs-2xl: 36px;
+  --fs-3xl: 64px;
+  --tracking-label: 0.14em;   /* Latin kicker labels, uppercase */
+  --tracking-ko-head: -0.02em; /* Korean headings, Pretendard 800 */
+
+  /* shape */
+  --radius: 2px;
+  --chamfer: 10px;
+  --chamfer-sm: 6px;
+  --stroke: 1px;
+  --clip-chamfer: polygon(var(--chamfer) 0, 100% 0, 100% calc(100% - var(--chamfer)), calc(100% - var(--chamfer)) 100%, 0 100%, 0 var(--chamfer));
+  --clip-chamfer-sm: polygon(var(--chamfer-sm) 0, 100% 0, 100% calc(100% - var(--chamfer-sm)), calc(100% - var(--chamfer-sm)) 100%, 0 100%, 0 var(--chamfer-sm));
+  --hit: 44px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-med: 240ms;
+  --dur-slow: 480ms;
+  --stagger: 30ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-med: 120ms; --dur-slow: 120ms; --stagger: 0ms; }
+}
+
+/* my bracket (pickem v1, 2026-10-07) — usage names on existing tokens */
+:root {
+  --pick: var(--accent);
+  --pick-wash: rgba(242, 67, 79, 0.20);
+  --pick-pred-line: #6B7180;
+  --slot-tbd: var(--line-strong);
+  --res-hit: var(--good);
+  --res-miss: var(--bad);
+  --res-void: var(--warn);
+  --lock-dim: 0.5;
+  --hold-delay: 400ms;
+}
